@@ -117,6 +117,7 @@ dowhile i < 10
   reset
   let i = i + 1
 end
+quit
 .endc
 "}
 C {simulator_commands_shown.sym} 40 -1160 0 0 {

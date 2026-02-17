@@ -173,7 +173,7 @@ C {lab_pin.sym} 1440 -590 0 1 {name=p32 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 1040 -690 0 1 {name=p33 sig_type=std_logic lab=GND}
 C {ipin.sym} 110 -130 0 0 {name=p3 lab=GND}
 C {lab_pin.sym} 1660 -350 0 0 {name=p34 sig_type=std_logic lab=GND}
-C {sg13g2_pr/cap_cpara.sym} 1660 -430 0 0 {name=C1 model=cparasitic C=1p  spiceprefix=X}
+C {sg13g2_pr/cap_cpara.sym} 1660 -430 0 0 {name=C1 model=cparasitic C='C_CP'  spiceprefix=X}
 C {lab_pin.sym} 1040 -280 0 1 {name=p7 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 1040 -590 0 1 {name=p10 sig_type=std_logic lab=Vbp}
 C {lab_pin.sym} 1330 -690 0 0 {name=p24 sig_type=std_logic lab=UP}
