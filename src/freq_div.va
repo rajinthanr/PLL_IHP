@@ -36,17 +36,16 @@ enddiscipline
 // SECTION 2: THE MODULE
 // --------------------------------------------------------
 
-module freq_div(vin, vout);
-    input vin;
-    output vout;
-    electrical vin, vout;
+module freq_div(vout, vin);
+    output electrical vout;
+    input electrical vin;
 
     // Parameters (using real numbers to avoid type errors)
-    parameter integer ratio = 4;
+    parameter integer ratio = 8;
     parameter real vth = 0.6;
-    parameter real vh = 1.2;
+    parameter real vh = 1.5;
     parameter real vl = 0.0;
-    parameter real tr = 20.0e-12; // 20ps time constant
+    parameter real tr = 10.0e-12; // 10ps time constant
 
     // Internal state variables
     integer count;
@@ -96,13 +95,14 @@ module freq_div(vin, vout);
         // ------------------------------------------------
         // We calculate the target voltage (vh or vl)
         v_target = out_state ? vh : vl;
+        //V(vout) <+ 0.8;
 
         // We solve the differential equation of an RC filter:
         // Current sum = 0  =>  C * dV/dt + (V - Vtarget)/R = 0
         // We set R=1, C=tr (time constant)
         
         // This line forces V(vout) to smooth out towards v_target
-        I(vout) <+ tr * ddt(V(vout)) + (V(vout) - v_target);
+     I(vout) <+ tr * ddt(V(vout)) + (V(vout) - v_target);
     end
 
 endmodule

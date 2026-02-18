@@ -2,9 +2,7 @@ v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {type=primitive
 format="@name @pinlist @symname"
-template="name=n1 ratio=4 vth=0.6 vh=1.2 vl=0.0 tr=20e-12"
-val="ratio=4"
-}
+template="name=n1"}
 V {}
 S {}
 F {}
