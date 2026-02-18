@@ -6,15 +6,14 @@ S {}
 F {}
 E {}
 B 2 50 -1020 850 -620 {flags=graph
-y1=-0.031442654
-y2=0.063803322
+y1=-0.19456328
+y2=1.307188
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=7.7066335e-10
-x2=5.0770652e-08
+x1=3.8723598e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -23,17 +22,16 @@ dataset=-1
 unitx=1
 logx=0
 logy=0
-rawfile=$netlist_dir/LC_VCO_tb.raw
 autoload=1
 sim_type=tran
-color="5 12"
-node="Out;outp 0.6 -
-i(v2)"}
+color="5 4"
+node="Outp
+outd"
+x2=1.1455623e-07}
 N 180 -300 180 -260 {lab=GND}
 N 120 -440 120 -360 {lab=VDD}
 N 120 -300 120 -260 {lab=GND}
 N 180 -440 180 -360 {lab=VCTRL}
-N 630 -320 680 -320 {lab=OUTp}
 N 630 -300 680 -300 {lab=OUTn}
 N 380 -320 420 -320 {lab=VCTRL}
 N 520 -220 520 -190 {lab=GND}
@@ -42,16 +40,14 @@ N 380 -300 420 -300 {lab=Ibias}
 N 520 -420 520 -400 {lab=VDD}
 C {title.sym} 160 -30 0 0 {name=l4 author="Rajinthan R"}
 C {vsource.sym} 120 -330 0 0 {name=V1 value=1.2 savecurrent=false}
-C {vsource.sym} 180 -330 0 0 {name=V2 value=0.6 savecurrent=false}
+C {vsource.sym} 180 -330 0 0 {name=V2 value=0.3 savecurrent=false}
 C {gnd.sym} 120 -260 0 0 {name=l1 lab=GND}
 C {gnd.sym} 180 -260 0 0 {name=l2 lab=GND}
 C {devices/vdd.sym} 120 -440 0 0 {name=l5 lab=VDD}
 C {devices/vdd.sym} 180 -440 0 0 {name=l8 lab=VCTRL}
 C {launcher.sym} 720 -590 0 0 {name=h5
 descr="load waves" 
-tclcommand="xschem raw_read $netlist_dir/LC_VCO1_tb.raw tran 0.0n 30n "
-}
-C {opin.sym} 680 -320 0 0 {name=p2 lab=OUTp
+tclcommand="xschem raw_read $netlist_dir/tb_VCO.raw tran"
 }
 C {opin.sym} 680 -300 0 0 {name=p1 lab=OUTn
 }
@@ -68,35 +64,20 @@ C {iopin.sym} 380 -300 2 0 {name=p5 lab=Ibias
 }
 C {devices/code_shown.sym} 930 -670 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
+.model freq_div freq_div
 .include /foss/designs/frac-n-pll-vco-mixdes_2026/schematic/blocks/lc-vco/simulations/IHP_4nH_Inductor.spice
 .param temp=27
 .control
+pre_osdi /foss/designs/PLL_IHP_PDK/src/freq_div.osdi
 save all
 *.ic v(OUTp)=0.6
 
-.options maxstep=10n reltol=1e-3 abstol=1e-6
-save v(vout)
-tran 10p 50n UIC
+tran 10p 100n UIC
 
 * Save transient waveform to raw file
-write LC_VCO_tb.raw
+write tb_VCO.raw
 
-* Plot time-domain waveform
-plot v(OUTp) xlimit 5n 60n
-
-* Perform FFT on output
-fft v(OUTp)
-
-* Convert FFT magnitude to dB
-let vmag = db(mag(v(OUTp)))
-
-* Plot FFT result
-plot vmag xlabel 'Frequency (Hz)' xlimit 0 5G
-
-* Save FFT data to text file
-wrdata fft_output(VCTRL=0.6).txt vmag
-
-quit 0
+*quit 0
 .endc
 "}
 C {/foss/designs/frac-n-pll-vco-mixdes_2026/schematic/blocks/lc-vco/LC_VCO.sym} 520 -310 0 0 {name=x2}
@@ -115,3 +96,8 @@ value="
 
 "
       }
+C {lab_pin.sym} 710 -320 0 1 {name=p23 lab=OUTp}
+C {/foss/designs/PLL_IHP_PDK/src/freq_div.sym} 680 -440 0 0 {name=n1}
+C {lab_pin.sym} 830 -440 0 1 {name=p7 lab=OUTd}
+C {lab_pin.sym} 650 -440 0 0 {name=p2 lab=OUTp}
+C {sg13g2_stdcells/sg13g2_inv_2.sym} 670 -320 0 0 {name=x5 VDD=VDD VSS=GND prefix=sg13g2_ }

@@ -26,32 +26,32 @@ N 1000 -420 1010 -420 {lab=Vbn}
 N 960 -480 1010 -480 {lab=Vbn}
 N 650 -780 650 -720 {lab=VDD}
 N 650 -530 650 -480 {lab=Vbp}
-N 1330 -280 1360 -280 {lab=DN}
-N 1400 -250 1400 -210 {lab=GND}
-N 1400 -390 1400 -310 {lab=#net3}
-N 1400 -280 1430 -280 {lab=GND}
-N 1400 -420 1440 -420 {lab=GND}
-N 1400 -660 1400 -620 {lab=#net4}
-N 1400 -780 1400 -720 {lab=VDD}
-N 1330 -420 1360 -420 {lab=Vbn}
-N 1400 -510 1400 -450 {lab=CTRL}
-N 1320 -590 1360 -590 {lab=Vbp}
-N 1330 -690 1360 -690 {lab=UP}
-N 1660 -510 1810 -510 {lab=CTRL}
-N 1400 -560 1400 -510 {lab=CTRL}
+N 1350 -280 1380 -280 {lab=DN}
+N 1420 -250 1420 -210 {lab=GND}
+N 1420 -390 1420 -310 {lab=#net3}
+N 1420 -280 1450 -280 {lab=GND}
+N 1420 -420 1460 -420 {lab=GND}
+N 1420 -660 1420 -620 {lab=#net4}
+N 1420 -780 1420 -720 {lab=VDD}
+N 1350 -420 1380 -420 {lab=Vbn}
+N 1420 -510 1420 -450 {lab=CTRL}
+N 1340 -590 1380 -590 {lab=Vbp}
+N 1350 -690 1380 -690 {lab=UP}
+N 1680 -510 1830 -510 {lab=CTRL}
+N 1420 -560 1420 -510 {lab=CTRL}
 N 690 -690 730 -690 {lab=GND}
 N 610 -690 650 -690 {lab=VDD}
 N 610 -590 650 -590 {lab=VDD}
-N 1400 -690 1440 -690 {lab=VDD}
-N 1400 -590 1440 -590 {lab=VDD}
+N 1420 -690 1460 -690 {lab=VDD}
+N 1420 -590 1460 -590 {lab=VDD}
 N 910 -690 960 -690 {lab=VDD}
 N 910 -590 960 -590 {lab=VDD}
 N 1000 -690 1040 -690 {lab=GND}
 N 650 -660 650 -620 {lab=#net5}
 N 710 -590 730 -590 {lab=Vbp}
-N 1660 -400 1660 -350 {lab=GND}
-N 1660 -510 1660 -460 {lab=CTRL}
-N 1400 -510 1660 -510 {lab=CTRL}
+N 1680 -400 1680 -350 {lab=GND}
+N 1680 -510 1680 -460 {lab=CTRL}
+N 1420 -510 1680 -510 {lab=CTRL}
 N 1000 -280 1040 -280 {lab=VDD}
 N 1000 -590 1040 -590 {lab=Vbp}
 N 710 -590 710 -530 {lab=Vbp}
@@ -123,13 +123,13 @@ model=sg13_lv_pmos
 spiceprefix=X
 }
 C {lab_pin.sym} 730 -590 0 1 {name=p19 sig_type=std_logic lab=Vbp}
-C {lab_pin.sym} 1330 -420 0 0 {name=p11 sig_type=std_logic lab=Vbn}
-C {lab_pin.sym} 1430 -280 0 1 {name=p13 sig_type=std_logic lab=GND}
-C {lab_pin.sym} 1400 -780 0 0 {name=p16 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} 1330 -280 0 0 {name=p17 sig_type=std_logic lab=DN}
-C {lab_pin.sym} 1440 -420 0 1 {name=p21 sig_type=std_logic lab=GND}
-C {lab_pin.sym} 1400 -210 0 0 {name=p22 sig_type=std_logic lab=GND}
-C {sg13g2_pr/sg13_lv_nmos.sym} 1380 -420 0 0 {name=M5
+C {lab_pin.sym} 1350 -420 0 0 {name=p11 sig_type=std_logic lab=Vbn}
+C {lab_pin.sym} 1450 -280 0 1 {name=p13 sig_type=std_logic lab=GND}
+C {lab_pin.sym} 1420 -780 0 0 {name=p16 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 1350 -280 0 0 {name=p17 sig_type=std_logic lab=DN}
+C {lab_pin.sym} 1460 -420 0 1 {name=p21 sig_type=std_logic lab=GND}
+C {lab_pin.sym} 1420 -210 0 0 {name=p22 sig_type=std_logic lab=GND}
+C {sg13g2_pr/sg13_lv_nmos.sym} 1400 -420 0 0 {name=M5
 l=\{CP_N_L\}
 w=\{CP_N_W\}
 ng=1
@@ -137,7 +137,7 @@ m=\{CP_N_M\}
 model=sg13_lv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_nmos.sym} 1380 -280 0 0 {name=M6
+C {sg13g2_pr/sg13_lv_nmos.sym} 1400 -280 0 0 {name=M6
 l=\{CP_N_L\}
 w=\{CP_N_W\}
 ng=1
@@ -145,7 +145,7 @@ m=\{CP_N_M\}
 model=sg13_lv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} 1380 -590 0 0 {name=M9
+C {sg13g2_pr/sg13_lv_pmos.sym} 1400 -590 0 0 {name=M9
 l=\{CP_P_L\}
 w=\{CP_P_W\}
 ng=1
@@ -153,7 +153,7 @@ m=\{CP_P_M\}
 model=sg13_lv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_lv_pmos.sym} 1380 -690 0 0 {name=M10
+C {sg13g2_pr/sg13_lv_pmos.sym} 1400 -690 0 0 {name=M10
 l=\{CP_P_L\}
 w=\{CP_P_W\}
 ng=1
@@ -161,22 +161,22 @@ m=\{CP_P_M\}
 model=sg13_lv_pmos
 spiceprefix=X
 }
-C {lab_pin.sym} 1320 -590 0 0 {name=p23 sig_type=std_logic lab=Vbp}
-C {lab_pin.sym} 1810 -510 0 1 {name=p25 sig_type=std_logic lab=CTRL}
+C {lab_pin.sym} 1340 -590 0 0 {name=p23 sig_type=std_logic lab=Vbp}
+C {lab_pin.sym} 1830 -510 0 1 {name=p25 sig_type=std_logic lab=CTRL}
 C {lab_pin.sym} 730 -690 0 1 {name=p26 sig_type=std_logic lab=GND}
 C {lab_pin.sym} 610 -690 0 0 {name=p27 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 610 -590 0 0 {name=p28 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 920 -690 0 0 {name=p29 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 920 -590 0 0 {name=p30 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} 1440 -690 0 1 {name=p31 sig_type=std_logic lab=VDD}
-C {lab_pin.sym} 1440 -590 0 1 {name=p32 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 1460 -690 0 1 {name=p31 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 1460 -590 0 1 {name=p32 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 1040 -690 0 1 {name=p33 sig_type=std_logic lab=GND}
 C {ipin.sym} 110 -130 0 0 {name=p3 lab=GND}
-C {lab_pin.sym} 1660 -350 0 0 {name=p34 sig_type=std_logic lab=GND}
-C {sg13g2_pr/cap_cpara.sym} 1660 -430 0 0 {name=C1 model=cparasitic C='C_CP'  spiceprefix=X}
+C {lab_pin.sym} 1680 -350 0 0 {name=p34 sig_type=std_logic lab=GND}
+C {sg13g2_pr/cap_cpara.sym} 1680 -430 0 0 {name=C1 model=cparasitic C='C_CP'  spiceprefix=X}
 C {lab_pin.sym} 1040 -280 0 1 {name=p7 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 1040 -590 0 1 {name=p10 sig_type=std_logic lab=Vbp}
-C {lab_pin.sym} 1330 -690 0 0 {name=p24 sig_type=std_logic lab=UP}
+C {lab_pin.sym} 1350 -690 0 0 {name=p24 sig_type=std_logic lab=UP}
 C {lab_pin.sym} 960 -640 0 1 {name=p35 sig_type=std_logic lab=net1}
 C {lab_pin.sym} 960 -360 0 1 {name=p36 sig_type=std_logic lab=net2}
 C {sg13g2_pr/annotate_fet_params.sym} 1110 -860 0 0 {name=annot1 ref=M3}

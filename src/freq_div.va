@@ -1,10 +1,6 @@
 // --------------------------------------------------------
-// SECTION 1: MANUAL DEFINITIONS (Fixes "electrical not found")
+// SECTION 1: MANUAL DEFINITIONS 
 // --------------------------------------------------------
-// Since your compiler cannot find disciplines.vams, we define
-// the bare minimum "electrical" discipline right here.
-// --------------------------------------------------------
-
 nature Voltage
     units = "V";
     access = V;
@@ -33,76 +29,89 @@ discipline electrical
 enddiscipline
 
 // --------------------------------------------------------
-// SECTION 2: THE MODULE
+// SECTION 2: OPENVAF COMPATIBLE MODULE
 // --------------------------------------------------------
 
 module freq_div(vout, vin);
     output electrical vout;
     input electrical vin;
 
-    // Parameters (using real numbers to avoid type errors)
-    parameter integer ratio = 8;
-    parameter real vth = 0.6;
-    parameter real vh = 1.5;
-    parameter real vl = 0.0;
-    parameter real tr = 10.0e-12; // 10ps time constant
+    // Internal Memory Nodes (Voltage acts as storage)
+    electrical n_count;      // Stores the current count (0V, 1V, 2V...)
+    electrical n_last_clk;   // Stores the previous input state (0V or 1V)
 
-    // Internal state variables
-    integer count;
-    integer out_state;
-    integer last_cycle_state;
-    real v_target;
+    // Parameters
+    parameter integer ratio = 24;
+    parameter real vth = 0.8;
+    parameter real vh = 1.2;
+    parameter real vl = 0.0;
+    parameter real tr = 1.0e-12; // Time constant for output
+    parameter real mem_tr = 1.0e-14; // Time constant for internal memory
+
+    // Variables
+    real current_count_v;
+    real next_count_val;
+    real input_now_high;
+    real input_prev_high;
+    real output_target;
+    integer rounded_count;
 
     analog begin
         // ------------------------------------------------
-        // 1. INITIALIZATION
+        // 1. READ MEMORY & INPUTS
         // ------------------------------------------------
-        @(initial_step) begin
-            count = 0;
-            out_state = 0;
-            last_cycle_state = 0;
-        end
-
-        // ------------------------------------------------
-        // 2. LOGIC (Replaces @cross with explicit checks)
-        // ------------------------------------------------
-        // This detects if input is above threshold
-        if (V(vin) > vth) begin
-            // Check if this is a "new" rising edge
-            if (last_cycle_state == 0) begin
-                last_cycle_state = 1;
-                
-                // Increment Counter
-                count = count + 1;
-                if (count >= ratio) begin
-                    count = 0;
-                end
-
-                // Update Output State
-                if (count < (ratio / 2)) begin
-                    out_state = 1;
-                end else begin
-                    out_state = 0;
-                end
-            end
-        end else begin
-            // Input is low, reset state for next edge
-            last_cycle_state = 0;
-        end
-
-        // ------------------------------------------------
-        // 3. OUTPUT FILTER (Replaces transition/laplace)
-        // ------------------------------------------------
-        // We calculate the target voltage (vh or vl)
-        v_target = out_state ? vh : vl;
-        //V(vout) <+ 0.8;
-
-        // We solve the differential equation of an RC filter:
-        // Current sum = 0  =>  C * dV/dt + (V - Vtarget)/R = 0
-        // We set R=1, C=tr (time constant)
+        // Get current voltages
+        current_count_v = V(n_count);
         
-        // This line forces V(vout) to smooth out towards v_target
-     I(vout) <+ tr * ddt(V(vout)) + (V(vout) - v_target);
+        // Convert real voltage to integer for logic (Rounding)
+        rounded_count = current_count_v;
+
+        // check if input is high NOW
+        input_now_high = (V(vin) > vth) ? 1.0 : 0.0;
+        
+        // check if input WAS high (from delayed internal node)
+        input_prev_high = (V(n_last_clk) > 0.3) ? 1.0 : 0.0;
+
+        // ------------------------------------------------
+        // 2. LOGIC (Manual Edge Detection)
+        // ------------------------------------------------
+        // Default: hold the current value
+        next_count_val = rounded_count;
+
+        // Rising Edge: Input is high, but the memory of the last clock is still low
+        if (input_now_high > 0.5 && input_prev_high < 0.5) begin
+            next_count_val = rounded_count + 1.0;
+            
+            if (next_count_val >= ratio) begin
+                next_count_val = 0.0;
+            end
+        end
+
+        // ------------------------------------------------
+        // 3. WRITE MEMORY (Replacing 'transition')
+        // ------------------------------------------------
+        // We use a manual RC equation: I = C*dV/dt + (V - Target)/R
+        // This forces the node to smoothly transition to 'next_count_val'
+        // We set R=1, C=mem_tr.
+        
+        // Update Count Memory
+        I(n_count) <+ mem_tr * ddt(V(n_count)) + (V(n_count) - next_count_val);
+
+        // Update Last-Clock Memory (This creates the delay needed for edge detection)
+        I(n_last_clk) <+ mem_tr * ddt(V(n_last_clk)) + (V(n_last_clk) - input_now_high);
+
+        // ------------------------------------------------
+        // 4. OUTPUT GENERATION
+        // ------------------------------------------------
+        if (next_count_val < (ratio / 2.0)) begin
+            output_target = vh;
+        end else begin
+            output_target = vl;
+        end
+        //output_target = next_count_val;
+
+        // Output Filter
+        I(vout) <+ tr * ddt(V(vout)) + (V(vout) - output_target);
     end
 
 endmodule

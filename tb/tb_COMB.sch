@@ -6,15 +6,15 @@ S {}
 F {}
 E {}
 B 2 1530 -930 2330 -530 {flags=graph
-y1=-0.012
-y2=1.3
+y1=-0.066103756
+y2=2.0232888
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=9.975e-14
-x2=1.9999999e-07
+x1=-7.1688304e-08
+x2=3.634279e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -29,15 +29,15 @@ node="Out;outp
 F_DIV"
 hilight_wave=-1}
 B 2 1530 -1330 2330 -930 {flags=graph
-y1=-0.097333465
-y2=1.4626665
+y1=-0.38082238
+y2=1.8658542
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=9.975e-14
-x2=1.9999999e-07
+x1=-7.1688304e-08
+x2=3.634279e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -59,8 +59,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=9.975e-14
-x2=1.9999999e-07
+x1=-7.1688304e-08
+x2=3.634279e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -82,8 +82,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=9.975e-14
-x2=1.9999999e-07
+x1=-7.1688304e-08
+x2=3.634279e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -103,8 +103,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.3550367e+08
-x2=5.3363697e+09
+x1=7.8262937e+08
+x2=3.288142e+09
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -124,60 +124,11 @@ P 4 1 820 -360 {}
 N 870 -690 870 -610 {lab=VDD}
 N 870 -550 870 -510 {lab=GND}
 N 990 -550 990 -530 {lab=IbiasVCO}
-N 1220 -350 1270 -350 {lab=OUTp}
 N 1220 -330 1270 -330 {lab=OUTn}
 N 970 -350 1010 -350 {lab=CTRL}
 N 1110 -250 1110 -220 {lab=GND}
 N 970 -330 1010 -330 {lab=IbiasVCO}
 N 1110 -450 1110 -430 {lab=VDD}
-N 400 -2260 410 -2260 {lab=#net1}
-N 410 -2260 410 -2190 {lab=#net1}
-N 150 -2190 410 -2190 {lab=#net1}
-N 150 -2260 150 -2190 {lab=#net1}
-N 150 -2260 220 -2260 {lab=#net1}
-N 700 -2260 710 -2260 {lab=#net2}
-N 710 -2260 710 -2190 {lab=#net2}
-N 450 -2190 710 -2190 {lab=#net2}
-N 450 -2260 450 -2190 {lab=#net2}
-N 450 -2260 520 -2260 {lab=#net2}
-N 400 -2280 520 -2280 {lab=#net3}
-N 700 -2280 790 -2280 {lab=#net4}
-N 970 -2260 980 -2260 {lab=#net5}
-N 980 -2260 980 -2190 {lab=#net5}
-N 720 -2190 980 -2190 {lab=#net5}
-N 720 -2260 720 -2190 {lab=#net5}
-N 720 -2260 790 -2260 {lab=#net5}
-N 970 -2280 1060 -2280 {lab=#net6}
-N 1240 -2260 1250 -2260 {lab=#net7}
-N 1250 -2260 1250 -2190 {lab=#net7}
-N 990 -2190 1250 -2190 {lab=#net7}
-N 990 -2260 990 -2190 {lab=#net7}
-N 990 -2260 1060 -2260 {lab=#net7}
-N 1240 -2280 1330 -2280 {lab=#net8}
-N 1510 -2260 1520 -2260 {lab=#net9}
-N 1520 -2260 1520 -2190 {lab=#net9}
-N 1260 -2190 1520 -2190 {lab=#net9}
-N 1260 -2260 1260 -2190 {lab=#net9}
-N 1260 -2260 1330 -2260 {lab=#net9}
-N 1510 -2280 1600 -2280 {lab=#net10}
-N 1780 -2260 1790 -2260 {lab=#net11}
-N 1790 -2260 1790 -2190 {lab=#net11}
-N 1530 -2190 1790 -2190 {lab=#net11}
-N 1530 -2260 1530 -2190 {lab=#net11}
-N 1530 -2260 1600 -2260 {lab=#net11}
-N 1780 -2280 1870 -2280 {lab=#net12}
-N 2050 -2260 2060 -2260 {lab=#net13}
-N 2060 -2260 2060 -2190 {lab=#net13}
-N 1800 -2190 2060 -2190 {lab=#net13}
-N 1800 -2260 1800 -2190 {lab=#net13}
-N 1800 -2260 1870 -2260 {lab=#net13}
-N 2050 -2280 2140 -2280 {lab=#net14}
-N 2320 -2260 2330 -2260 {lab=#net15}
-N 2330 -2260 2330 -2190 {lab=#net15}
-N 2070 -2190 2330 -2190 {lab=#net15}
-N 2070 -2260 2070 -2190 {lab=#net15}
-N 2070 -2260 2140 -2260 {lab=#net15}
-N 2320 -2280 2410 -2280 {lab=F_DIV}
 C {title.sym} 160 -30 0 0 {name=l4 author="Rajinthan R"}
 C {vsource.sym} 870 -580 0 0 {name=V1 value=1.2 savecurrent=false}
 C {gnd.sym} 870 -510 0 0 {name=l1 lab=GND}
@@ -185,16 +136,12 @@ C {devices/vdd.sym} 870 -690 0 0 {name=l5 lab=VDD}
 C {devices/isource.sym} 990 -580 0 0 {name=I0 value=50u}
 C {devices/vdd.sym} 990 -610 0 0 {name=l12 lab=VDD}
 C {devices/vdd.sym} 990 -530 2 0 {name=l3 lab=IbiasVCO}
-C {vsource.sym} 630 -520 0 0 {name=Vfvco value="0 pulse(0 'VDD' 6n 0.1n 0.1n 5n 10n)" savecurrent=false}
-C {lab_pin.sym} 630 -550 0 1 {name=p10 sig_type=std_logic lab=F_VCO}
-C {gnd.sym} 630 -490 0 0 {name=l9 lab=GND}
-C {vsource.sym} 630 -670 0 0 {name=Vfref value="0 pulse(0 'VDD' 4n 0.1n 0.1n 5n 10n)" savecurrent=false}
-C {lab_pin.sym} 630 -700 0 1 {name=p11 sig_type=std_logic lab=F_REF}
-C {gnd.sym} 630 -640 0 0 {name=l10 lab=GND}
+C {vsource.sym} 500 -680 0 0 {name=Vfref value="0 pulse(0 1.2 0n 0.1n 0.1n 5n 10n)" savecurrent=false}
+C {lab_pin.sym} 500 -710 0 1 {name=p11 sig_type=std_logic lab=F_REF}
+C {gnd.sym} 500 -650 0 0 {name=l10 lab=GND}
 C {lab_pin.sym} 700 -400 0 0 {name=p8 lab=VDD}
-C {lab_pin.sym} 800 -340 0 1 {name=p9 lab=CTRL}
 C {lab_pin.sym} 700 -280 0 0 {name=p14 lab=GND}
-C {launcher.sym} 1600 -490 0 0 {name=h1
+C {launcher.sym} 1600 -500 0 0 {name=h1
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/tb_COMB.raw tran
 "
@@ -203,33 +150,24 @@ C {simulator_commands_shown.sym} 130 -1150 0 0 {name=SimulatorNGSPICE
 simulator=ngspice
 only_toplevel=false 
 value="
+.model freq_div freq_div
 .include /foss/designs/frac-n-pll-vco-mixdes_2026/schematic/blocks/lc-vco/simulations/IHP_4nH_Inductor.spice
-*.include tb_CP.save
-.param RAW_TEMP = agauss(40, 30, 1)
-.param TEMPGAUSS = max(20, min(RAW_TEMP, 80))
-.option temp = 'TEMPGAUSS'
-.param VDDGAUSS = agauss(1.2, 0.05, 1)
-
-.param VDD = 'VDDGAUSS'
-* analysis
+.option temp = 27
+.param VDD = 1.2
 
 .control
+.options maxstep=10n reltol=1e-3 abstol=1e-6
+pre_osdi /foss/designs/PLL_IHP_PDK/src/freq_div.osdi
 *save all
 write tb_COMB.raw
 set appendwrite
-let i = 0
-dowhile i < 1
-
   
-  tran 10p 200n uic
+  tran 10p 500n uic
   write tb_COMB.raw
-  linearize v(outp)
-  fft v(outp)
+  linearize
+  fft v(outp) v(F_DIV)
   write tb_COMB.raw
-  fft v(F_DIV)
-  write tb_COMB.raw
-  let i = i + 1
-end
+
 *quit 0
 .endc
 "}
@@ -253,7 +191,7 @@ value="
 .param CP_P_L = 0.5u
 .param CP_P_W = 200u
 .param CP_N_M = 1
-.param C_CP = 20p
+.param C_CP = 400p
 "}
 C {launcher.sym} 1600 -460 0 0 {name=h4
 descr=SimulateNGSPICE
@@ -264,9 +202,9 @@ xschem raw_read $netlist_dir/tb_COMB.raw tran;
 xschem redraw
 "}
 C {/foss/designs/PLL_IHP_PDK/src/CP.sym} 700 -340 0 0 {name=x1}
-C {lab_pin.sym} 510 -550 0 1 {name=p12 sig_type=std_logic lab=Ibias}
-C {gnd.sym} 510 -490 0 0 {name=l11 lab=GND}
-C {isource.sym} 510 -520 0 0 {name=I1 value=10m}
+C {lab_pin.sym} 500 -560 0 1 {name=p12 sig_type=std_logic lab=Ibias}
+C {gnd.sym} 500 -500 0 0 {name=l11 lab=GND}
+C {isource.sym} 500 -530 0 0 {name=I1 value=10m}
 C {lab_pin.sym} 630 -310 0 0 {name=p13 sig_type=std_logic lab=Ibias}
 C {/foss/designs/PLL_IHP_PDK/src/PFD_std.sym} 360 -340 0 0 {name=x3}
 C {lab_pin.sym} 360 -400 0 0 {name=p15 lab=VDD}
@@ -295,22 +233,16 @@ C {lab_pin.sym} 330 -190 0 0 {name=p3 lab=F_REF}
 C {lab_pin.sym} 330 -170 0 0 {name=p4 lab=F_VCO}
 C {lab_pin.sym} 510 -160 0 1 {name=p5 lab=DN}
 C {lab_pin.sym} 360 -120 0 0 {name=p6 lab=GND}
-C {sg13g2_stdcells/sg13g2_dfrbp_1.sym} 310 -2260 0 0 {name=x6 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 1270 -350 0 1 {name=p23 lab=OUTp}
-C {lab_pin.sym} 220 -2280 0 0 {name=p29 lab=OUTp}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 610 -2260 0 0 {name=x5 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 2410 -2280 0 1 {name=p7 lab=F_DIV}
-C {lab_pin.sym} 220 -2240 0 0 {name=p30 lab=VDD}
-C {lab_pin.sym} 520 -2240 0 0 {name=p31 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 880 -2260 0 0 {name=x7 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 790 -2240 0 0 {name=p32 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 1150 -2260 0 0 {name=x8 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 1060 -2240 0 0 {name=p33 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 1420 -2260 0 0 {name=x9 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 1330 -2240 0 0 {name=p34 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 1690 -2260 0 0 {name=x10 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 1600 -2240 0 0 {name=p35 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 1960 -2260 0 0 {name=x11 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 1870 -2240 0 0 {name=p36 lab=VDD}
-C {sg13g2_stdcells/sg13g2_dfrbp_2.sym} 2230 -2260 0 0 {name=x12 VDD=VDD VSS=GND prefix=sg13g2_ }
-C {lab_pin.sym} 2140 -2240 0 0 {name=p37 lab=VDD}
+C {lab_pin.sym} 1300 -350 0 1 {name=p23 lab=OUTp}
+C {lab_pin.sym} 1200 -620 0 0 {name=p7 lab=OUTp}
+C {lab_pin.sym} 1380 -620 0 1 {name=p29 lab=F_DIV}
+C {lab_pin.sym} 1110 -730 0 0 {name=p30 lab=F_DIV}
+C {devices/res.sym} 1140 -730 1 0 {name=R1
+value=4
+footprint=1206
+device=resistor
+m=1}
+C {lab_pin.sym} 1170 -730 0 1 {name=p31 lab=F_VCO}
+C {/foss/designs/PLL_IHP_PDK/src/freq_div.sym} 1230 -620 0 0 {name=n1}
+C {sg13g2_stdcells/sg13g2_inv_2.sym} 1260 -350 0 0 {name=x5 VDD=VDD VSS=GND prefix=sg13g2_ }
+C {lab_pin.sym} 800 -340 0 1 {name=p10 lab=CTRL}
