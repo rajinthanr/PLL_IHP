@@ -1,0 +1,108 @@
+// --------------------------------------------------------
+// SECTION 1: MANUAL DEFINITIONS (Fixes "electrical not found")
+// --------------------------------------------------------
+// Since your compiler cannot find disciplines.vams, we define
+// the bare minimum "electrical" discipline right here.
+// --------------------------------------------------------
+
+nature Voltage
+    units = "V";
+    access = V;
+    idt_nature = Flux;
+endnature
+
+nature Flux
+    units = "Wb";
+    access = Phi;
+endnature
+
+nature Current
+    units = "A";
+    access = I;
+    idt_nature = Charge;
+endnature
+
+nature Charge
+    units = "c";
+    access = Q;
+endnature
+
+discipline electrical
+    potential Voltage;
+    flow Current;
+enddiscipline
+
+// --------------------------------------------------------
+// SECTION 2: THE MODULE
+// --------------------------------------------------------
+
+module freq_div(vin, vout);
+    input vin;
+    output vout;
+    electrical vin, vout;
+
+    // Parameters (using real numbers to avoid type errors)
+    parameter integer ratio = 4;
+    parameter real vth = 0.6;
+    parameter real vh = 1.2;
+    parameter real vl = 0.0;
+    parameter real tr = 20.0e-12; // 20ps time constant
+
+    // Internal state variables
+    integer count;
+    integer out_state;
+    integer last_cycle_state;
+    real v_target;
+
+    analog begin
+        // ------------------------------------------------
+        // 1. INITIALIZATION
+        // ------------------------------------------------
+        @(initial_step) begin
+            count = 0;
+            out_state = 0;
+            last_cycle_state = 0;
+        end
+
+        // ------------------------------------------------
+        // 2. LOGIC (Replaces @cross with explicit checks)
+        // ------------------------------------------------
+        // This detects if input is above threshold
+        if (V(vin) > vth) begin
+            // Check if this is a "new" rising edge
+            if (last_cycle_state == 0) begin
+                last_cycle_state = 1;
+                
+                // Increment Counter
+                count = count + 1;
+                if (count >= ratio) begin
+                    count = 0;
+                end
+
+                // Update Output State
+                if (count < (ratio / 2)) begin
+                    out_state = 1;
+                end else begin
+                    out_state = 0;
+                end
+            end
+        end else begin
+            // Input is low, reset state for next edge
+            last_cycle_state = 0;
+        end
+
+        // ------------------------------------------------
+        // 3. OUTPUT FILTER (Replaces transition/laplace)
+        // ------------------------------------------------
+        // We calculate the target voltage (vh or vl)
+        v_target = out_state ? vh : vl;
+
+        // We solve the differential equation of an RC filter:
+        // Current sum = 0  =>  C * dV/dt + (V - Vtarget)/R = 0
+        // We set R=1, C=tr (time constant)
+        
+        // This line forces V(vout) to smooth out towards v_target
+        I(vout) <+ tr * ddt(V(vout)) + (V(vout) - v_target);
+    end
+
+endmodule
