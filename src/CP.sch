@@ -34,11 +34,10 @@ N 1420 -420 1460 -420 {lab=GND}
 N 1420 -660 1420 -620 {lab=#net4}
 N 1420 -780 1420 -720 {lab=VDD}
 N 1350 -420 1380 -420 {lab=Vbn}
-N 1420 -510 1420 -450 {lab=CTRL}
 N 1340 -590 1380 -590 {lab=Vbp}
 N 1350 -690 1380 -690 {lab=UP}
-N 1680 -510 1830 -510 {lab=CTRL}
-N 1420 -560 1420 -510 {lab=CTRL}
+N 1680 -510 2010 -510 {lab=#net5}
+N 1420 -510 1420 -450 {lab=#net6}
 N 690 -690 730 -690 {lab=GND}
 N 610 -690 650 -690 {lab=VDD}
 N 610 -590 650 -590 {lab=VDD}
@@ -47,11 +46,10 @@ N 1420 -590 1460 -590 {lab=VDD}
 N 910 -690 960 -690 {lab=VDD}
 N 910 -590 960 -590 {lab=VDD}
 N 1000 -690 1040 -690 {lab=GND}
-N 650 -660 650 -620 {lab=#net5}
+N 650 -660 650 -620 {lab=#net7}
 N 710 -590 730 -590 {lab=Vbp}
 N 1680 -400 1680 -350 {lab=GND}
-N 1680 -510 1680 -460 {lab=CTRL}
-N 1420 -510 1680 -510 {lab=CTRL}
+N 1680 -510 1680 -460 {lab=#net5}
 N 1000 -280 1040 -280 {lab=VDD}
 N 1000 -590 1040 -590 {lab=Vbp}
 N 710 -590 710 -530 {lab=Vbp}
@@ -60,6 +58,15 @@ N 650 -530 710 -530 {lab=Vbp}
 N 650 -560 650 -530 {lab=Vbp}
 N 960 -560 960 -480 {lab=Vbn}
 N 650 -420 650 -370 {lab=Ibias}
+N 2050 -600 2050 -540 {lab=VDD}
+N 2050 -480 2050 -440 {lab=CTRL}
+N 2050 -440 2070 -440 {lab=CTRL}
+N 2050 -320 2050 -290 {lab=GND}
+N 2050 -440 2050 -380 {lab=CTRL}
+N 2050 -510 2090 -510 {lab=GND}
+N 1590 -510 1680 -510 {lab=#net5}
+N 1420 -510 1530 -510 {lab=#net6}
+N 1420 -560 1420 -510 {lab=#net6}
 C {opin.sym} 180 -210 0 0 {name=p4 lab=CTRL}
 C {ipin.sym} 110 -220 0 0 {name=p12 lab=UP}
 C {ipin.sym} 110 -250 0 0 {name=p1 lab=VDD}
@@ -162,7 +169,7 @@ model=sg13_lv_pmos
 spiceprefix=X
 }
 C {lab_pin.sym} 1340 -590 0 0 {name=p23 sig_type=std_logic lab=Vbp}
-C {lab_pin.sym} 1830 -510 0 1 {name=p25 sig_type=std_logic lab=CTRL}
+C {lab_pin.sym} 2070 -440 0 1 {name=p25 sig_type=std_logic lab=CTRL}
 C {lab_pin.sym} 730 -690 0 1 {name=p26 sig_type=std_logic lab=GND}
 C {lab_pin.sym} 610 -690 0 0 {name=p27 sig_type=std_logic lab=VDD}
 C {lab_pin.sym} 610 -590 0 0 {name=p28 sig_type=std_logic lab=VDD}
@@ -192,3 +199,32 @@ m=1
 }
 C {sg13g2_pr/annotate_fet_params.sym} 1810 -862.105189945283 0 0 {name=annot3 ref=M9}
 C {sg13g2_pr/annotate_fet_params.sym} 1812.208120310291 -302.105189945283 0 0 {name=annot4 ref=M6}
+C {sg13g2_pr/sg13_lv_nmos.sym} 2030 -510 0 0 {name=M11
+l=0.5u
+w=100u
+ng=20
+m=1
+model=sg13_lv_nmos
+spiceprefix=X
+}
+C {lab_pin.sym} 2050 -600 0 0 {name=p37 sig_type=std_logic lab=VDD}
+C {sg13g2_pr/rsil.sym} 2050 -350 0 0 {name=R2
+w=0.5e-6
+l=0.5e-4
+model=rsil
+body=sub!
+spiceprefix=X
+b=0
+m=1
+}
+C {lab_pin.sym} 2050 -290 0 0 {name=p38 sig_type=std_logic lab=GND}
+C {lab_pin.sym} 2090 -510 0 1 {name=p39 sig_type=std_logic lab=GND}
+C {sg13g2_pr/rsil.sym} 1560 -510 1 0 {name=R3
+w=0.5e-6
+l=1e-5
+model=rsil
+body=sub!
+spiceprefix=X
+b=0
+m=1
+}

@@ -6,14 +6,14 @@ S {}
 F {}
 E {}
 B 2 50 -1020 850 -620 {flags=graph
-y1=-0.19456328
-y2=1.307188
+y1=0.083494078
+y2=0.94979809
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=3.8723598e-08
+x1=1.1814299e-08
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -24,10 +24,37 @@ logx=0
 logy=0
 autoload=1
 sim_type=tran
-color="5 4"
+color="5 4 12"
 node="Outp
-outd"
-x2=1.1455623e-07}
+outd
+Vctrl"
+x2=1.718143e-07
+hcursor1_y=0.41963418
+hcursor2_y=0.70549986}
+B 2 50 -1430 850 -1030 {flags=graph
+y1=1.9952089e+09
+y2=2.6767834e+09
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=1.1814299e-08
+divx=5
+subdivx=1
+xlabmag=1.0
+ylabmag=1.0
+dataset=-1
+unitx=1
+logx=0
+logy=0
+autoload=1
+sim_type=tran
+color=21
+node=freq_vector
+x2=1.718143e-07
+hcursor1_y=2.2597346e+09
+hcursor2_y=2.5045169e+09}
 N 180 -300 180 -260 {lab=GND}
 N 120 -440 120 -360 {lab=VDD}
 N 120 -300 120 -260 {lab=GND}
@@ -40,7 +67,7 @@ N 380 -300 420 -300 {lab=Ibias}
 N 520 -420 520 -400 {lab=VDD}
 C {title.sym} 160 -30 0 0 {name=l4 author="Rajinthan R"}
 C {vsource.sym} 120 -330 0 0 {name=V1 value=1.2 savecurrent=false}
-C {vsource.sym} 180 -330 0 0 {name=V2 value=0.3 savecurrent=false}
+C {vsource.sym} 180 -330 0 0 {name=V2 value="pulse(0.3 1.0 50n 100n 100n 200n)" savecurrent=false}
 C {gnd.sym} 120 -260 0 0 {name=l1 lab=GND}
 C {gnd.sym} 180 -260 0 0 {name=l2 lab=GND}
 C {devices/vdd.sym} 120 -440 0 0 {name=l5 lab=VDD}
@@ -62,7 +89,7 @@ C {devices/vdd.sym} 240 -360 0 0 {name=l12 lab=VDD}
 C {devices/vdd.sym} 240 -280 2 0 {name=l3 lab=Ibias}
 C {iopin.sym} 380 -300 2 0 {name=p5 lab=Ibias
 }
-C {devices/code_shown.sym} 930 -670 0 0 {name=NGSPICE1 only_toplevel=true 
+C {devices/code_shown.sym} 920 -900 0 0 {name=NGSPICE1 only_toplevel=true 
 value="
 .model freq_div freq_div
 .include /foss/designs/frac-n-pll-vco-mixdes_2026/schematic/blocks/lc-vco/simulations/IHP_4nH_Inductor.spice
@@ -72,7 +99,28 @@ pre_osdi /foss/designs/PLL_IHP_PDK/src/freq_div.osdi
 save all
 *.ic v(OUTp)=0.6
 
-tran 10p 100n UIC
+tran 1p 200n UIC
+
+linearize v(OUTp) v(Vctrl) v(outd)
+
+    let n_pts = length(time)
+    let freq_vector = unitvec(n_pts) * 0
+    
+    * Advanced script to calculate instantaneous frequency
+    let i = 1
+    let last_cross = 0
+    while i < length(time)
+        if (v(OUTp)[i] >= 0.6) & (v(OUTp)[i-1] < 0.6)
+            let current_cross = time[i]
+            let period = current_cross - last_cross
+            let inst_freq = 1 / period
+            let freq_vector[i] = inst_freq
+            let last_cross = current_cross
+        else
+            let freq_vector[i] = freq_vector[i-1]
+        end
+        let i = i + 1
+    end
 
 * Save transient waveform to raw file
 write tb_VCO.raw
@@ -81,7 +129,7 @@ write tb_VCO.raw
 .endc
 "}
 C {/foss/designs/frac-n-pll-vco-mixdes_2026/schematic/blocks/lc-vco/LC_VCO.sym} 520 -310 0 0 {name=x2}
-C {simulator_commands_shown.sym} 920 -900 0 0 {
+C {simulator_commands_shown.sym} 960 -1100 0 0 {
 name=Libs_Ngspice
 simulator=ngspice
 only_toplevel=false
